@@ -379,7 +379,7 @@ class SecurityUpdater:
 
     def _update_signatures(self):
         """Update threat signatures."""
-        response = requests.get(self.signature_url)
+        response = requests.get(self.signature_url, timeout=30)
         response.raise_for_status()
 
         sig_file = self.base_dir / 'signatures' / 'latest.json'
@@ -388,7 +388,7 @@ class SecurityUpdater:
 
     def _update_patterns(self):
         """Update detection patterns."""
-        response = requests.get(self.pattern_url)
+        response = requests.get(self.pattern_url, timeout=30)
         response.raise_for_status()
 
         pattern_file = self.base_dir / 'patterns' / 'latest.json'
